@@ -65,7 +65,7 @@ MoMoPDA now includes:
 
 1. **Clone repositories:**
    ```bash
-   git clone https://github.com/vivedlearning/momopda.git
+   git clone <repository-url> momopda
    cd ..
    git clone https://github.com/moodle/moodle.git
    ```
@@ -95,13 +95,16 @@ See [PROMPT.md](PROMPT.md) for conditional orchestration system.
 
 ## Moodle Core Repository
 
-The Moodle core repository should be cloned alongside this repository for reference:
+The Moodle core repository should be cloned alongside MoMoPDA:
 ```
-../moodle/          # Moodle core repository
-./                  # This plugin repository
+../moodle/          # Moodle core repository (for reference and testing)
+../momopda/         # This repository
 ```
 
-This way the agent can access Moodle code for reference, if needed.
+This enables:
+- **Testing:** The `scripts/run_tests.sh` script symlinks plugins into Moodle for PHPUnit testing
+- **Reference:** AI agents can access Moodle core code for API examples and patterns
+- **Development:** Side-by-side development without modifying Moodle core
 
 ## Plugin Templates
 

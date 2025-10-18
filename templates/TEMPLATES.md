@@ -67,7 +67,7 @@ This document provides an overview of all available plugin templates and their f
 
 **Use for:** Learning activities, assignments, interactive content, gradable items
 
-**Note:** This is the most complete template with full backup/restore skeleton as per requirements.
+**Note:** This is the most complete template, including full backup/restore functionality which is mandatory for activity modules in Moodle. The backup/restore system ensures activities can be duplicated, moved between courses, and included in course backups.
 
 ---
 
@@ -271,14 +271,6 @@ To contribute a new template or improvement:
 4. Update this index
 5. Submit a pull request
 
-## Future Enhancements
+## Contributing
 
-Planned improvements:
-- [ ] Database install.xml templates for plugins needing DB tables
-- [ ] Additional privacy provider templates for plugins storing user data
-- [ ] Settings.php templates for plugins with admin configuration
-- [ ] Mobile app support stubs
-- [ ] Behat test templates
-- [ ] Docker test harness integration
-- [ ] Automated placeholder replacement script
-- [ ] Interactive template customization CLI tool
+Templates are designed to be minimal but complete starting points. To contribute improvements or new templates, please ensure they follow the established patterns and submit a pull request.
