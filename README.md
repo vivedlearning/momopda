@@ -1,46 +1,98 @@
 # Modular Moodle Plugin Development Assistant (MoMoPDA)
 
-This repository is a collection of prompts that can be combined in different ways in order to use agentic generative AI for software development in Moodle. Its first version is only tested with Claude Code, but with little modifications, it could be made work with other agent software and backends as well. Pull requests welcome!
+A comprehensive framework for rapid Moodle 5.x plugin development using AI coding agents. MoMoPDA provides plugin templates, development guides, testing scripts, and agent workflows optimized for VS Code + GitHub Copilot, Claude Code, and other AI-powered development tools.
+
+## 🚀 New: VS Code + GitHub Copilot Support
+
+MoMoPDA now includes:
+- **Plugin Templates** - Ready-to-use scaffolding for all major plugin types
+- **Testing Scripts** - Side-by-side testing with automated PHPUnit setup
+- **Copilot Instructions** - Optimized AI agent workflows
+- **Test Plan Generator** - Automated comprehensive test plan creation
+
+**See [README-COPILOT.md](README-COPILOT.md) for VS Code + Copilot quick start guide.**
 
 ## File Structure
 
 ```
-├── PROMPT.md                        # Main orchestrator file
+├── README-COPILOT.md                # VS Code + Copilot quick start guide
+├── PROMPT.md                        # Orchestrator for Claude Code
 ├── CLAUDE.md                        # Redirect to PROMPT.md
+├── templates/                       # Plugin scaffolding templates
+│   ├── block/                       # Block plugin template
+│   ├── mod/                         # Activity module template (with backup)
+│   ├── qtype/                       # Question type template
+│   ├── qbank/                       # Question bank plugin template
+│   ├── enrol/                       # Enrolment method template
+│   ├── filter/                      # Content filter template
+│   ├── tiny/                        # TinyMCE editor plugin template
+│   ├── report/                      # Admin report template
+│   └── local/                       # Local plugin template
+├── scripts/
+│   ├── run_tests.sh                 # Automated PHPUnit testing
+│   └── generate_test_plan.php      # Test plan generator
+├── .github/
+│   └── copilot-instructions.md     # GitHub Copilot agent instructions
 └── .prompts/  
     ├── core/
     │   ├── base-instructions.md     # Core Moodle development principles
-    │   ├── security-checklist.md    # Security requirements
-    │   └── quality-standards.md     # Code quality standards
+    │   └── security-checklist.md    # Security requirements
     ├── plugins/
     │   ├── block.md                 # Block plugin development guide
-    │   ├── enrol.md                 # Enrolment plugin development guide
-    │   ├── enrol_patterns.md        # Enrolment plugin patterns and anti-patterns
-    │   ├── filter.md                # Filter plugin development guide
-    │   ├── filter_patterns.md       # Filter plugin patterns and anti-patterns
-    │   ├── mod.md                   # Activity module plugin development guide
-    │   ├── mod_patterns.md          # Activity module plugin patterns and anti-patterns
-    │   ├── qbank.md                 # Question bank plugin development guide
-    │   ├── qbank_patterns.md        # Question bank plugin patterns and anti-patterns
-    │   ├── qtype.md                 # Question type plugin development guide
-    │   ├── qtype_patterns.md        # Question type plugin patterns and anti-patterns
-    │   ├── report.md                # Report plugin development guide
-    │   ├── report_patterns.md       # Report plugin patterns and anti-patterns
-    │   ├── tiny.md                  # TinyMCE editor plugin development guide
-    │   └── tiny_patterns.md         # TinyMCE editor plugin patterns and anti-patterns
-    ├── tasks/
-    │   ├── create.md                # New plugin creation
-    │   ├── bugfix.md                # Bug fixing workflow
-    │   ├── test.md                  # Test creation
-    │   ├── enhance.md               # Feature enhancement
-    │   └── refactor.md              # Code refactoring
+    │   ├── mod.md                   # Activity module development guide
+    │   ├── mod_patterns.md          # Activity module patterns
+    │   ├── qtype.md                 # Question type development guide
+    │   ├── qtype_patterns.md        # Question type patterns
+    │   ├── qbank.md                 # Question bank development guide
+    │   ├── qbank_patterns.md        # Question bank patterns
+    │   ├── enrol.md                 # Enrolment plugin guide
+    │   ├── enrol_patterns.md        # Enrolment patterns
+    │   ├── filter.md                # Filter plugin guide
+    │   ├── filter_patterns.md       # Filter patterns
+    │   ├── tiny.md                  # TinyMCE plugin guide
+    │   ├── tiny_patterns.md         # TinyMCE patterns
+    │   ├── report.md                # Report plugin guide
+    │   ├── report_patterns.md       # Report patterns
+    │   ├── local.md                 # Local plugin guide
+    │   └── local_patterns.md        # Local plugin patterns
     └── patterns/
-        ├── database.md              # Database operation patterns
-        ├── forms.md                 # Moodle forms patterns
-        ├── navigation.md            # Navigation integration
-        ├── api-usage.md             # Common API usage patterns
         └── html_writer.md           # HTML generation best practices
 ```
+
+## Quick Start
+
+### For VS Code + GitHub Copilot Users
+
+1. **Clone repositories:**
+   ```bash
+   git clone https://github.com/vivedlearning/momopda.git
+   cd ..
+   git clone https://github.com/moodle/moodle.git
+   ```
+
+2. **Create plugin from template:**
+   ```bash
+   cd momopda
+   cp -r templates/block ../moodle-block_myplugin
+   cd ../moodle-block_myplugin
+   ```
+
+3. **Use Copilot to customize:**
+   ```
+   @workspace Replace all {{PLACEHOLDER}} values with my plugin details
+   ```
+
+4. **Run tests:**
+   ```bash
+   ../momopda/scripts/run_tests.sh
+   ```
+
+**Full guide:** [README-COPILOT.md](README-COPILOT.md)
+
+### For Claude Code Users
+
+See [PROMPT.md](PROMPT.md) for conditional orchestration system.
+
 ## Moodle Core Repository
 
 The Moodle core repository should be cloned alongside this repository for reference:
@@ -51,7 +103,104 @@ The Moodle core repository should be cloned alongside this repository for refere
 
 This way the agent can access Moodle code for reference, if needed.
 
+## Plugin Templates
+
+MoMoPDA provides ready-to-use templates for all major Moodle plugin types. Each template includes:
+
+- **Core Files** - Essential plugin files with proper structure
+- **Placeholder System** - Consistent `{{PLACEHOLDER}}` format for easy customization
+- **Tests** - Basic PHPUnit test structure
+- **Documentation** - README template
+
+### Template Placeholders
+
+All templates use these placeholders:
+
+| Placeholder | Example | Description |
+|-------------|---------|-------------|
+| `{{COMPONENT}}` | `block_myplugin` | Full component name |
+| `{{NAME}}` | `myplugin` | Plugin name only |
+| `{{PLUGIN_DISPLAY_NAME}}` | `My Plugin` | Human-readable name |
+| `{{VERSION_DATE}}` | `2025011800` | Version (YYYYMMDDRR) |
+| `{{REQUIRES_VERSION}}` | `2024100700` | Required Moodle version |
+| `{{MATURITY}}` | `MATURITY_STABLE` | Plugin maturity level |
+| `{{RELEASE}}` | `1.0.0` | Release version string |
+
+### Available Templates
+
+- **`templates/block/`** - Block plugins with instance configuration
+- **`templates/mod/`** - Activity modules with backup/restore, events, privacy provider
+- **`templates/qtype/`** - Question types with basic structure
+- **`templates/qbank/`** - Question bank plugins
+- **`templates/enrol/`** - Enrolment methods with capabilities
+- **`templates/filter/`** - Content filters
+- **`templates/tiny/`** - TinyMCE editor plugins
+- **`templates/report/`** - Admin reports
+- **`templates/local/`** - Local plugins with hooks
+
+### Testing Scripts
+
+**`scripts/run_tests.sh`** - Automated testing with side-by-side Moodle setup:
+- Auto-detects plugin type
+- Symlinks plugin to correct Moodle directory
+- Initializes PHPUnit if needed
+- Runs tests and outputs JSON results
+
+**`scripts/generate_test_plan.php`** - Generates comprehensive TEST_PLAN.md:
+- Plugin-type specific test cases
+- Security and privacy tests
+- Integration and performance tests
+- Test execution checklist
+
 ## Usage Examples
+
+### VS Code + GitHub Copilot Workflow
+
+**Example 1: Create New Block Plugin**
+```bash
+# Copy template
+cp -r templates/block ../moodle-block_student_progress
+
+# Use Copilot to customize
+# @workspace Replace placeholders in all files with:
+#   - COMPONENT: block_student_progress
+#   - NAME: student_progress
+#   - PLUGIN_DISPLAY_NAME: Student Progress Dashboard
+#   - VERSION_DATE: 2025011800
+
+# Add functionality
+# @workspace Using .prompts/plugins/block.md, add a feature to display
+# course completion percentage with a progress bar
+
+# Test
+cd ../moodle-block_student_progress
+../momopda/scripts/run_tests.sh
+```
+
+**Example 2: Create Activity Module with Grading**
+```bash
+# Copy template (includes backup/restore skeleton)
+cp -r templates/mod ../moodle-mod_interactive_quiz
+
+# @workspace Customize the mod template and add:
+#   - Question sets with multiple choice
+#   - Timer functionality
+#   - Gradebook integration
+#   Reference: .prompts/plugins/mod.md sections on grading and backup
+```
+
+**Example 3: Generate and Execute Test Plan**
+```bash
+# Generate comprehensive test plan
+php scripts/generate_test_plan.php local_course_tools
+
+# @workspace Implement PHPUnit tests from TEST_PLAN.md sections 2-4
+
+# Run tests
+scripts/run_tests.sh
+```
+
+### Claude Code Workflow (Conditional Orchestration)
 
 ### Example 1: New Block Plugin
 **Detected**: `block_` repository name
