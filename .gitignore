@@ -1,0 +1,40 @@
+# MoMoPDA .gitignore
+
+# Test results
+test_results.json
+TEST_PLAN.md
+
+# Temporary files
+/tmp/
+*.tmp
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PHP
+vendor/
+composer.lock
+
+# Node.js (if used for JS development)
+node_modules/
+package-lock.json
+npm-debug.log
+
+# Build artifacts
+dist/
+build/
+
+# Moodle specific
+config.php
+moodledata/
+phpunit.xml
+.phpunit.result.cache
